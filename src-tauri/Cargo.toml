@@ -30,7 +30,7 @@ argon2 = "0.6.0"
 chacha20poly1305 = "0.11.0"
 zeroize = { version = "1.9.1", features = ["derive"] }
 rand = "0.10.3"
-ed25519-dalek = { version = "2.1", default-features = false, features = ["std", "rand_core"] }
+ed25519-dalek = { version = "3.0", default-features = false, features = ["std", "rand_core"] }
 
 [profile.release]
 opt-level = 3
