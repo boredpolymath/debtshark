@@ -24,7 +24,7 @@ tauri-plugin-log = "2"
 chrono = { version = "0.4", features = ["serde"] }
 uuid = { version = "1.8", features = ["v4", "serde"] }
 rusqlite = { version = "0.40", features = ["bundled", "chrono", "uuid"] }
-sha2 = "0.10"
+sha2 = "0.11"
 thiserror = "2.0"
 argon2 = "0.6.0"
 chacha20poly1305 = "0.11.0"
