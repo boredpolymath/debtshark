@@ -353,10 +353,11 @@ fn test_live_production_benchmarks() {
     hasher.update(&payload);
     let hash_result = hasher.finalize();
     let hash_elapsed = hash_start.elapsed();
+    let hash_hex: String = hash_result.iter().map(|b| format!("{:02x}", b)).collect();
     let hash_mb_per_sec = 10.0 / hash_elapsed.as_secs_f64();
     println!(
-        "  -> SHA-256 Merkle Hashing (10 MB payload): {:.2?} ({:.1} MB/sec, Digest: {:x})",
-        hash_elapsed, hash_mb_per_sec, hash_result
+        "  -> SHA-256 Merkle Hashing (10 MB payload): {:.2?} ({:.1} MB/sec, Digest: {})",
+        hash_elapsed, hash_mb_per_sec, hash_hex
     );
     assert!(
         hash_mb_per_sec > 15.0,

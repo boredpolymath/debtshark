@@ -191,7 +191,7 @@ impl CryptoEngine {
     pub fn compute_sha256(bytes: &[u8]) -> String {
         let mut hasher = Sha256::new();
         hasher.update(bytes);
-        format!("{:x}", hasher.finalize())
+        hex_encode(&hasher.finalize())
     }
 
     /// Enroll a new master passphrase:

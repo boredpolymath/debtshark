@@ -1,3 +1,4 @@
+use crate::crypto::hex_encode;
 use crate::error::{AppError, AppResult};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
@@ -379,7 +380,7 @@ impl EvidenceVault {
     pub fn compute_sha256(bytes: &[u8]) -> String {
         let mut hasher = Sha256::new();
         hasher.update(bytes);
-        format!("{:x}", hasher.finalize())
+        hex_encode(&hasher.finalize())
     }
 
     /// Calculate SHA-256 hash streaming directly from a file path
@@ -399,7 +400,7 @@ impl EvidenceVault {
             hasher.update(&buffer[..bytes_read]);
         }
 
-        Ok(format!("{:x}", hasher.finalize()))
+        Ok(hex_encode(&hasher.finalize()))
     }
 
     /// Verify file integrity against an expected SHA-256 hash.
@@ -724,7 +725,7 @@ impl EvidenceVault {
                 .map_err(|e| AppError::Io(format!("Failed to write chunk to vault file: {}", e)))?;
         }
 
-        let sha256_hash = format!("{:x}", hasher.finalize());
+        let sha256_hash = hex_encode(&hasher.finalize());
 
         Ok(IngestedEvidence {
             doc_id: *doc_id,
